@@ -1,5 +1,16 @@
 # 西安电子科技大学计科院数据库大作业
 
+# How to use?
+
+```bash
+git clone https://github.com/GodHu777777/BusManageSystem
+cd BusManageSystem
+pip install -r requirements.txt
+python app.py
+```
+
+然后在浏览器打开[http://localhost:5000](http://localhost:5000)
+
 [数据库设计网课](https://www.bilibili.com/video/BV1DR4y1k7WL/?spm_id_from=333.788.top_right_bar_window_history.content.click)
 
 # 安装mysql
