@@ -9,6 +9,25 @@ pip install -r requirements.txt
 python app.py
 ```
 
+# Conda usage 
+
+1. 安装anaconda[完整教程](https://blog.csdn.net/m0_49683806/article/details/135674621)
+
+```bash
+wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
+bash Anaconda3-2023.03-1-Linux-x86_64.sh
+# 检查.bashrc文件里是否配置环境变量eval "$(/root/anaconda3/bin/conda shell.bash hook)"
+source ~/.bashrc
+```
+
+2. 创建conda环境
+
+```bash
+conda create -n "BUS" python=3.8
+conda activate
+pip install -r requirements.txt
+```
+
 然后在浏览器打开[http://localhost:5000](http://localhost:5000)
 
 [数据库设计网课](https://www.bilibili.com/video/BV1DR4y1k7WL/?spm_id_from=333.788.top_right_bar_window_history.content.click)
