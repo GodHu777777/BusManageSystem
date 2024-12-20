@@ -16,6 +16,18 @@ def get_db_connection():
     conn = mysql.connector.connect(**db_config)
     return conn
 
+# global init
+def create_database():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('CREATE DATABASE IF NOT EXISTS flask_db;')  # 确保数据库存在
+    conn.commit()
+    cursor.close()
+    conn.close()
+create_database()
+
+
+
 # 首页，展示所有用户
 @app.route('/')
 def index():
