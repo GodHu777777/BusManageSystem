@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>司机违章查询结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>司机违章查询结果</h1>
+    {% if violations %}
+        <table>
+            <thead>
+                <tr>
+                    <th>违章类型</th>
+                    <th>时间</th>
+                    <th>地点</th>
+                    <th>车牌号</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for violation in violations %}
+                <tr>
+                    <td>{{ violation.violation_type }}</td>
+                    <td>{{ violation.time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ violation.location }}</td>
+                    <td>{{ violation.plate_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>该时间段内没有找到违章记录。</p>
+    {% endif %}
+    <a href="{{ url_for('driver_violations') }}" class="back-button">返回查询</a>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

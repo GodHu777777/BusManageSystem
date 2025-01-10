@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>车队违章统计查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>车队违章统计查询</h1>
+    <form method="GET" action="{{ url_for('fleet_violation_stats') }}">
+        <div class="form-group">
+            <label for="fleet_id">选择车队：</label>
+            <select id="fleet_id" name="fleet_id" required>
+                {% for fleet in fleets %}
+                <option value="{{ fleet.id }}">{{ fleet.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="start_date">开始日期：</label>
+            <input type="date" id="start_date" name="start_date" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="end_date">结束日期：</label>
+            <input type="date" id="end_date" name="end_date" required>
+        </div>
+        
+        <button type="submit">查询</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

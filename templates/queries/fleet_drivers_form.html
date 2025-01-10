@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>车队司机查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>车队司机查询</h1>
+    <form method="GET" action="{{ url_for('fleet_drivers') }}">
+        <div class="form-group">
+            <label for="fleet_id">选择车队：</label>
+            <select id="fleet_id" name="fleet_id" required>
+                {% for fleet in fleets %}
+                <option value="{{ fleet.id }}">{{ fleet.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <button type="submit">查询</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>违章记录列表</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>违章记录列表</h1>
+    <a href="{{ url_for('add_violation') }}" class="add-button">添加违章记录</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>司机姓名</th>
+                <th>工号</th>
+                <th>车牌号</th>
+                <th>所属车队</th>
+                <th>所属线路</th>
+                <th>违章类型</th>
+                <th>违章时间</th>
+                <th>违章地点</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for violation in violations %}
+            <tr>
+                <td>{{ violation.driver_name }}</td>
+                <td>{{ violation.job_number }}</td>
+                <td>{{ violation.plate_number }}</td>
+                <td>{{ violation.fleet_name }}</td>
+                <td>{{ violation.route_name }}</td>
+                <td>{{ violation.violation_type }}</td>
+                <td>{{ violation.time.strftime('%Y-%m-%d') }}</td>
+                <td>{{ violation.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

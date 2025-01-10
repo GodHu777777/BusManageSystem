@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask MySQL Example</title>
+    <title>公交安全管理系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>User List</h1>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-        <!-- loop -->
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <a href="{{ url_for('add_user') }}">Add User</a>
+    <h1>公交安全管理系统</h1>
+    <div class="menu-container">
+        <h2>基础数据管理</h2>
+        <div class="menu-group">
+            <a href="{{ url_for('list_drivers') }}" class="menu-item">司机管理</a>
+            <a href="{{ url_for('list_vehicles') }}" class="menu-item">车辆管理</a>
+            <a href="{{ url_for('list_violations') }}" class="menu-item">违章记录</a>
+        </div>
+
+        <h2>数据查询</h2>
+        <div class="menu-group">
+            <a href="{{ url_for('fleet_drivers') }}" class="menu-item">车队司机查询</a>
+            <a href="{{ url_for('driver_violations') }}" class="menu-item">司机违章查询</a>
+            <a href="{{ url_for('fleet_violation_stats') }}" class="menu-item">车队违章统计</a>
+        </div>
+    </div>
 </body>
 </html>

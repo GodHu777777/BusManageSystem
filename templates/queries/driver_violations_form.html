@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>司机违章查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>司机违章查询</h1>
+    <form method="GET" action="{{ url_for('driver_violations') }}">
+        <div class="form-group">
+            <label for="driver_id">选择司机：</label>
+            <select id="driver_id" name="driver_id" required>
+                {% for driver in drivers %}
+                <option value="{{ driver.id }}">{{ driver.name }} (工号: {{ driver.job_number }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="start_date">开始日期：</label>
+            <input type="date" id="start_date" name="start_date" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="end_date">结束日期：</label>
+            <input type="date" id="end_date" name="end_date" required>
+        </div>
+        
+        <button type="submit">查询</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>车队司机查询结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>车队司机查询结果</h1>
+    {% if drivers %}
+        <table>
+            <thead>
+                <tr>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>线路</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for driver in drivers %}
+                <tr>
+                    <td>{{ driver.job_number }}</td>
+                    <td>{{ driver.driver_name }}</td>
+                    <td>{{ driver.gender }}</td>
+                    <td>{{ driver.route_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>该车队下没有找到司机。</p>
+    {% endif %}
+    <a href="{{ url_for('fleet_drivers') }}" class="back-button">返回查询</a>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>添加违章记录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>添加违章记录</h1>
+    {% if is_captain %}
+    <form method="POST">
+        <div class="form-group">
+            <label for="driver_id">违章司机：</label>
+            <select id="driver_id" name="driver_id" required>
+                {% for driver in drivers %}
+                <option value="{{ driver.id }}">{{ driver.name }} (工号: {{ driver.job_number }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vehicle_id">违章车辆：</label>
+            <select id="vehicle_id" name="vehicle_id" required>
+                {% for vehicle in vehicles %}
+                <option value="{{ vehicle.id }}">{{ vehicle.plate_number }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="violation_type">违章类型：</label>
+            <select id="violation_type" name="violation_type" required>
+                <option value="red_light">闯红灯</option>
+                <option value="zebra_crossing">未礼让斑马线</option>
+                <option value="cross_line">压线</option>
+                <option value="illegal_parking">违章停车</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="time">违章日期：</label>
+            <input type="date" id="time" name="time" 
+                   value="{{ default_time }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location">违章地点：</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+
+        <button type="submit">提交</button>
+    </form>
+    {% else %}
+    <p class="error-message">抱歉，只有队长和路队长才能录入违章信息。</p>
+    {% endif %}
+    <a href="{{ url_for('list_violations') }}" class="back-button">返回列表</a>
+</body>
+</html> 

@@ -1,0 +1,11 @@
+<form method="post">
+    违章类型：<input type="text" name="violation_type" required><br>
+    违章时间：<input type="text" name="violation_time" required placeholder="YYYY-MM-DD HH:MM:SS"><br>
+    司机：
+    <select name="driver_id">
+        {% for driver in drivers %}
+        <option value="{{ driver.id }}">{{ driver.name }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">提交</button>
+</form>

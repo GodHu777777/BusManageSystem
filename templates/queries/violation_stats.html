@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>车队违章统计结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>车队违章统计结果</h1>
+    {% if stats %}
+        <table>
+            <thead>
+                <tr>
+                    <th>违章类型</th>
+                    <th>次数</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in stats %}
+                <tr>
+                    <td>{{ stat.violation_type }}</td>
+                    <td>{{ stat.total_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>该时间段内没有找到违章记录。</p>
+    {% endif %}
+    <a href="{{ url_for('fleet_violation_stats') }}" class="back-button">返回查询</a>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 

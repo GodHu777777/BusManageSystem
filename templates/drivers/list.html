@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>司机列表</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>司机列表</h1>
+    <a href="{{ url_for('add_driver') }}" class="add-button">添加新司机</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>工号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>所属车队</th>
+                <th>所属线路</th>
+                <th>职位</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+            <tr>
+                <td>{{ driver.job_number }}</td>
+                <td>{{ driver.name }}</td>
+                <td>{{ '男' if driver.gender == 'male' else '女' }}</td>
+                <td>{{ driver.fleet_name }}</td>
+                <td>{{ driver.route_name or '未分配' }}</td>
+                <td>
+                    {% if driver.is_captain %}队长
+                    {% elif driver.is_route_captain %}路队长
+                    {% else %}司机{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}" class="back-button">返回首页</a>
+</body>
+</html> 
