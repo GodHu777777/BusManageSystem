@@ -6,7 +6,8 @@
 git clone https://github.com/GodHu777777/BusManageSystem
 cd BusManageSystem
 pip install -r requirements.txt
-python app.py
+python3 init_db.py # 初始化数据库
+python3 app.py # 启动服务器
 ```
 
 # Conda usage 
@@ -15,7 +16,7 @@ python app.py
 
 ```bash
 wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
-bash Anaconda3-2023.03-1-Linux-x86_64.sh
+bash Anaconda3-2023.03-1-Linux-x86_64.sh        
 # 检查.bashrc文件里是否配置环境变量eval "$(/root/anaconda3/bin/conda shell.bash hook)"
 source ~/.bashrc
 ```
@@ -24,7 +25,7 @@ source ~/.bashrc
 
 ```bash
 conda create -n "BUS" python=3.8
-conda activate
+conda activate BUS
 pip install -r requirements.txt
 ```
 
