@@ -103,7 +103,24 @@ def add_vehicle():
 def list_violations():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('SELECT * FROM violation_list_view ORDER BY time DESC')
+    cursor.execute('''
+        SELECT 
+            v.id,
+            d.name as driver_name,
+            d.job_number,
+            vh.plate_number,
+            r.name as route_name,
+            f.name as fleet_name,
+            v.violation_type,
+            v.time,
+            v.location
+        FROM violations v
+        JOIN drivers d ON v.driver_id = d.id
+        JOIN vehicles vh ON v.vehicle_id = vh.id
+        JOIN routes r ON d.route_id = r.id
+        JOIN fleets f ON d.fleet_id = f.id
+        ORDER BY v.time DESC
+    ''')
     violations = cursor.fetchall()
     cursor.close()
     conn.close()

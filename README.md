@@ -2,10 +2,24 @@
 
 # How to use?
 
+## Step 0
+    
 ```bash
 git clone https://github.com/GodHu777777/BusManageSystem
 cd BusManageSystem
-pip install -r requirements.txt
+```
+
+安装mysql 我用的docker
+```bash
+docker pull mysql:8.0.3
+docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:8.0.3`
+```
+
+## Step 1
+
+初始化数据库并启动服务器
+
+```bash
 python3 init_db.py # 初始化数据库
 python3 app.py # 启动服务器
 ```
